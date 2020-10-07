@@ -1,0 +1,30 @@
+﻿@page "/"
+
+<ul>
+	@foreach (string l in _log)
+	{
+		<li>@l</li>
+	}
+</ul>
+	<button @onclick="Test">Teeest</button>
+@code
+{
+	List<string> _log = new List<string>();
+
+	async Task Test()
+	{
+		_log.Add("KLIJENT -- Krece sa metodom");
+		int rez = await DuuuugPoso();
+		_log.Add("KLIJENT -- Zavrsio  " + rez);
+		StateHasChanged();
+	}
+
+	async Task<int> DuuuugPoso()
+	{
+		_log.Add("SERVER -- Krece sa metodom");
+		await Task.Delay(2000);
+		_log.Add("SERVER -- Zavrsio");
+		StateHasChanged();
+		return 56;
+	}
+}
